@@ -11,8 +11,8 @@ env:
   AWS_REGION: us-east-2
   ECR_REPOSITORY: flask-auth-app
   ECS_CLUSTER: flask-auth-cluster
-  ECS_SERVICE: InfrastructureStack-EcsStackFlaskAuthServiceServiceF0712F02-CsEAm2A7Tm0G
-  CONTAINER_NAME: FlaskAuthContainer
+  ECS_SERVICE: InfrastructureStackEcsStackA2D21B5F-FlaskAuthService0ECD191B-yjroOhzceZNQ
+  CONTAINER_NAME: web
 
 jobs:
   deploy:
@@ -43,7 +43,6 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          cd frontend
           docker build --platform linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
