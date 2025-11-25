@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Cognito Auth{% endblock %}
+
+{% block content %}
+<h1>Welcome!</h1>
+<p class="subtitle">You are successfully logged in</p>
+
+<div class="user-info">
+    <p><strong>Email:</strong> {{ user_email }}</p>
+</div>
+
+<form method="GET" action="{{ url_for('logout') }}">
+    <button type="submit" class="logout-btn">Sign Out</button>
+</form>
+{% endblock %}
